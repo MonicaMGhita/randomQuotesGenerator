@@ -1,0 +1,118 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link
+  rel="stylesheet"
+ href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Square+Peg&display=swap" rel="stylesheet">
+
+<title>Random Quote Generator</title>
+
+ <script>
+ const QUOTEBANK = [
+         {
+          quote: "Darkness cannot drive out darkness, only light can do that. Hate cannot drive out hate, only love can do that.",
+        author: "Martin Luther King Jr."
+            },
+            {
+        quote: "Don't use your brain to play it, let your feelings guide your fingers.",
+        author: "Jimi Hendrix"
+            },
+            {
+        quote: "All your life, you will be faced with a choice. You can choose love or hate…I choose love.",
+        author: "Johnny Cash"
+            }
+    ];
+
+      window.onload = init;
+      function init() {
+        generateQuote()
+      }
+
+      function generateQuote() {
+        let quoteSize = QUOTEBANK.length;
+        let randomIndex = Math.floor(Math.random() * quoteSize);
+        let randomQuoteData = QUOTEBANK[randomIndex];
+
+        let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;text="
+
+        // Add The Quote
+        let quoteInApiFormat = randomQuoteData.quote.replace(/ /g, "%20");
+        twitterLink += quoteInApiFormat
+        // Add the Author
+        let authorInApiFormat = randomQuoteData.author.replace(/ /g, "%20");
+        twitterLink += " - " + authorInApiFormat
+
+        document.getElementById("tweet-quote").href = twitterLink;
+        document.getElementById("text").innerText = randomQuoteData.quote;
+        document.getElementById("author").innerText = randomQuoteData.author;
+      }
+ </script>
+ 
+ <style>
+ button{
+  width: 100px;
+margin-left: 10px;
+}
+
+.quote-text {
+  padding: 10px;
+    text-align: center;
+    width: 450px;
+    height: auto;
+    clear: both;
+    font-weight: 500;
+    font-size: 20px;
+  }
+.quote-author {
+    width: 450px;
+    height: auto;
+    clear: both;
+    padding-top: 20px;
+    font-size: 15px;
+    text-align: right;
+  }
+body {
+  background-color: black;
+  color: black;
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+#quote-box {
+  border-radius: 8px;
+  position: relative;
+  //margin:8% auto auto auto;
+  width: 450px;
+  padding: 40px 50px;
+  display: table;
+  background-color: white;
+}
+ </style>
+ 
+ </head>
+
+  <body>
+<div id="wrapper">
+  <div id="quote-box">
+    <div class="quote-text">
+      <i class="fa fa-quote-left" style="margin-right:7px;"></i><span id="text"></span>
+    </div>
+    <div class="quote-author">- <span id="author"></span></div>
+    
+      <a href="#" id="tweet-quote" target="_blank" class="btn btn-block btn-primary"></a>
+     
+      <button class="button" id="new-quote" onClick="generateQuote();" style=color:black;text-align:center;background-color:white;border-radius:6px;padding:8px18px6px18px;margin-top:10px;opacity:1;cursor:pointer;">New quote</button>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  </body>
